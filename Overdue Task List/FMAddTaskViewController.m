@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.textView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +59,22 @@
     newTask.date = self.datePicker.date;
     newTask.completed = NO;
     return newTask;
+}
+
+#pragma mark - UITextView Delegate
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [self.textView resignFirstResponder];
+        return NO;
+    }
+    
+    else
+    {
+        return YES;
+    }
 }
 
 @end

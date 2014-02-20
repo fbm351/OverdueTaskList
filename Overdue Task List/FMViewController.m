@@ -7,6 +7,7 @@
 //
 
 #import "FMViewController.h"
+#define TO_ADD_VIEW @"toAddedTaskViewController"
 
 @interface FMViewController ()
 
@@ -15,6 +16,14 @@
 @implementation FMViewController
 
 #pragma mark - Lazy Instantiation
+
+- (NSMutableArray *)tasks
+{
+    if (!_tasks) {
+        _tasks = [[NSMutableArray alloc] init];
+    }
+    return _tasks;
+}
 
 - (void)viewDidLoad
 {
@@ -35,7 +44,16 @@
 
 - (IBAction)addButtonPressed:(UIBarButtonItem *)sender
 {
-    
+    [self performSegueWithIdentifier:TO_ADD_VIEW sender:sender];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:TO_ADD_VIEW])
+    {
+        FMAddTaskViewController *addTaskVC = segue.destinationViewController;
+        addTaskVC.delegate = self;
+    }
 }
 
 #pragma mark - FMAddTaskViewController delegates
@@ -50,7 +68,11 @@
 {
     [self.tasks addObject:task];
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"%@", self.tasks);
+    NSLog(@"task list is %@", self.tasks);
+    for (FMTask *task in self.tasks)
+    {
+        NSLog(@"%@", task.title);
+    }
 }
 
 @end

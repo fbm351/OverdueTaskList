@@ -18,7 +18,7 @@
 
 @end
 
-@interface FMAddTaskViewController : UIViewController
+@interface FMAddTaskViewController : UIViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) id <FMAddTaskViewControllerDelegate> delegate;
 
