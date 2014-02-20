@@ -21,6 +21,9 @@
 		D339CBD618B6850000A18C4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D339CBB818B6850000A18C4E /* UIKit.framework */; };
 		D339CBDE18B6850100A18C4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D339CBDC18B6850100A18C4E /* InfoPlist.strings */; };
 		D339CBE018B6850100A18C4E /* Overdue_Task_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBDF18B6850100A18C4E /* Overdue_Task_ListTests.m */; };
+		D339CBEB18B68CEB00A18C4E /* FMAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBEA18B68CEB00A18C4E /* FMAddTaskViewController.m */; };
+		D339CBEE18B68D5200A18C4E /* FMDetailTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBED18B68D5200A18C4E /* FMDetailTaskViewController.m */; };
+		D339CBF118B68D7100A18C4E /* FMEditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBF018B68D7100A18C4E /* FMEditTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		D339CBDB18B6850100A18C4E /* Overdue Task ListTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Overdue Task ListTests-Info.plist"; sourceTree = "<group>"; };
 		D339CBDD18B6850100A18C4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D339CBDF18B6850100A18C4E /* Overdue_Task_ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Overdue_Task_ListTests.m; sourceTree = "<group>"; };
+		D339CBE918B68CEB00A18C4E /* FMAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMAddTaskViewController.h; sourceTree = "<group>"; };
+		D339CBEA18B68CEB00A18C4E /* FMAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMAddTaskViewController.m; sourceTree = "<group>"; };
+		D339CBEC18B68D5200A18C4E /* FMDetailTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDetailTaskViewController.h; sourceTree = "<group>"; };
+		D339CBED18B68D5200A18C4E /* FMDetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDetailTaskViewController.m; sourceTree = "<group>"; };
+		D339CBEF18B68D7100A18C4E /* FMEditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMEditTaskViewController.h; sourceTree = "<group>"; };
+		D339CBF018B68D7100A18C4E /* FMEditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMEditTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +126,12 @@
 				D339CBC618B6850000A18C4E /* Main.storyboard */,
 				D339CBC918B6850000A18C4E /* FMViewController.h */,
 				D339CBCA18B6850000A18C4E /* FMViewController.m */,
+				D339CBE918B68CEB00A18C4E /* FMAddTaskViewController.h */,
+				D339CBEA18B68CEB00A18C4E /* FMAddTaskViewController.m */,
+				D339CBEC18B68D5200A18C4E /* FMDetailTaskViewController.h */,
+				D339CBED18B68D5200A18C4E /* FMDetailTaskViewController.m */,
+				D339CBEF18B68D7100A18C4E /* FMEditTaskViewController.h */,
+				D339CBF018B68D7100A18C4E /* FMEditTaskViewController.m */,
 				D339CBCC18B6850000A18C4E /* Images.xcassets */,
 				D339CBBB18B6850000A18C4E /* Supporting Files */,
 			);
@@ -252,7 +267,10 @@
 			files = (
 				D339CBC118B6850000A18C4E /* main.m in Sources */,
 				D339CBC518B6850000A18C4E /* FMAppDelegate.m in Sources */,
+				D339CBF118B68D7100A18C4E /* FMEditTaskViewController.m in Sources */,
+				D339CBEB18B68CEB00A18C4E /* FMAddTaskViewController.m in Sources */,
 				D339CBCB18B6850000A18C4E /* FMViewController.m in Sources */,
+				D339CBEE18B68D5200A18C4E /* FMDetailTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

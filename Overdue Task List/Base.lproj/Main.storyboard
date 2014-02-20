@@ -34,16 +34,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="FUd-Pd-5da"/>
+                    <navigationItem key="navigationItem" id="FUd-Pd-5da">
+                        <barButtonItem key="leftBarButtonItem" title="Reorder" id="gT5-Zf-pxd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cRU-hz-2Un"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="648" y="104"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="ugV-zp-Yvu">
             <objects>
-                <viewController id="3KL-I9-Rj7" sceneMemberID="viewController">
+                <viewController id="3KL-I9-Rj7" customClass="FMDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FeL-Jy-azh"/>
                         <viewControllerLayoutGuide type="bottom" id="9Bq-cj-Cf4"/>
@@ -58,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="1170" y="-227"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Task View Controller-->
         <scene sceneID="ylh-Ga-Xxa">
             <objects>
-                <viewController id="Uah-v6-mgY" sceneMemberID="viewController">
+                <viewController id="Uah-v6-mgY" customClass="FMEditTaskViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3n8-lD-2k2"/>
                         <viewControllerLayoutGuide type="bottom" id="VmY-gQ-cxn"/>
@@ -76,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="1665" y="-227"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Task View Controller-->
         <scene sceneID="caT-69-M3M">
             <objects>
-                <viewController id="NzB-6T-CsP" sceneMemberID="viewController">
+                <viewController id="NzB-6T-CsP" customClass="FMAddTaskViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Ki-Oz-m73"/>
                         <viewControllerLayoutGuide type="bottom" id="1d9-uo-r3A"/>
