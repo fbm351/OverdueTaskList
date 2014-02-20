@@ -10,4 +10,12 @@
 
 @interface FMDetailViewController : UIViewController
 
+//IBOutlets
+@property (strong, nonatomic) IBOutlet UILabel *labelTaskName;
+@property (strong, nonatomic) IBOutlet UILabel *labelTaskDescription;
+@property (strong, nonatomic) IBOutlet UILabel *labelTaskDate;
+
+//IBActions
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender;
+
 @end
