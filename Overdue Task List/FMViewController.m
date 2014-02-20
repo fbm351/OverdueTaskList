@@ -14,6 +14,8 @@
 
 @implementation FMViewController
 
+#pragma mark - Lazy Instantiation
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -26,9 +28,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender
+{
+    
 }
 
-- (IBAction)addButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)addButtonPressed:(UIBarButtonItem *)sender
+{
+    
 }
+
+#pragma mark - FMAddTaskViewController delegates
+
+- (void)didCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Did Cancel");
+}
+
+- (void)didAddTask:(FMTask *)task
+{
+    [self.tasks addObject:task];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@", self.tasks);
+}
+
 @end

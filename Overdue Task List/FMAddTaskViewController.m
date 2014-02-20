@@ -37,16 +37,19 @@
 
 - (IBAction)addTaskButtonPressed:(UIButton *)sender
 {
-    
+    FMTask *addNewTask = [self ceateNewTask];
+    [self.delegate didAddTask:addNewTask];
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender
 {
-    
+    [self.delegate didCancel];
 }
 
 #pragma mark - Helper Methods
 
+
+//This helper methods takes the input from the IBOulets on the view and creates a new Task object
 - (FMTask *)ceateNewTask
 {
     FMTask *newTask = [[FMTask alloc] init];
