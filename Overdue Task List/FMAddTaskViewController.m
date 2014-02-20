@@ -44,4 +44,17 @@
 {
     
 }
+
+#pragma mark - Helper Methods
+
+- (FMTask *)ceateNewTask
+{
+    FMTask *newTask = [[FMTask alloc] init];
+    newTask.title = self.textFieldTaskName.text;
+    newTask.detail = self.textView.text;
+    newTask.date = self.datePicker.date;
+    newTask.completed = NO;
+    return newTask;
+}
+
 @end
