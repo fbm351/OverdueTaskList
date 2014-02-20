@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMTask.h"
+
+@protocol FMAddTaskViewControllerDelegate <NSObject>
+
+@required
+
+- (void)didCancel;
+- (void)didAddTask:(FMTask *)task;
+
+@end
 
 @interface FMAddTaskViewController : UIViewController
+
+@property (weak, nonatomic) id <FMAddTaskViewControllerDelegate> delegate;
 
 //IBOutlets
 @property (strong, nonatomic) IBOutlet UITextField *textFieldTaskName;
