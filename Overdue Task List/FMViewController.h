@@ -10,4 +10,11 @@
 
 @interface FMViewController : UIViewController
 
+//IBOutlets
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+//IBActions
+- (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender;
+- (IBAction)addButtonPressed:(UIBarButtonItem *)sender;
+
 @end
