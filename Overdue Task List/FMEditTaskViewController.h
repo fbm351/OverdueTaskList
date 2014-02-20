@@ -10,4 +10,13 @@
 
 @interface FMEditTaskViewController : UIViewController
 
+//IBOutlets
+@property (strong, nonatomic) IBOutlet UITextField *textFieldTaskName;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+
+//IBActions
+- (IBAction)saveButtonPressed:(UIBarButtonItem *)sender;
+- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender;
+
 @end

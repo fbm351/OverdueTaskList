@@ -160,9 +160,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7Mt-JS-y8J">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3Tt-Fw-ytI"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="iZO-9W-js9"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3Tt-Fw-ytI">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Uah-v6-mgY" id="IBy-My-nb9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="iZO-9W-js9">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="Uah-v6-mgY" id="PBI-vW-KW4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="4w3-C5-6MX" id="a8p-lb-MRr"/>
+                        <outlet property="textFieldTaskName" destination="xby-Qf-Zfs" id="1o5-qE-RqB"/>
+                        <outlet property="textView" destination="RK7-dP-Z1n" id="HgR-Xm-bxi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tgp-YE-HWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
