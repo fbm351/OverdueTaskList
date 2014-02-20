@@ -24,6 +24,7 @@
 		D339CBEB18B68CEB00A18C4E /* FMAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBEA18B68CEB00A18C4E /* FMAddTaskViewController.m */; };
 		D339CBEE18B68D5200A18C4E /* FMDetailTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBED18B68D5200A18C4E /* FMDetailTaskViewController.m */; };
 		D339CBF118B68D7100A18C4E /* FMEditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBF018B68D7100A18C4E /* FMEditTaskViewController.m */; };
+		D339CBF518B69E3600A18C4E /* FMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D339CBF418B69E3600A18C4E /* FMTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		D339CBED18B68D5200A18C4E /* FMDetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDetailTaskViewController.m; sourceTree = "<group>"; };
 		D339CBEF18B68D7100A18C4E /* FMEditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMEditTaskViewController.h; sourceTree = "<group>"; };
 		D339CBF018B68D7100A18C4E /* FMEditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMEditTaskViewController.m; sourceTree = "<group>"; };
+		D339CBF318B69E3600A18C4E /* FMTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTask.h; sourceTree = "<group>"; };
+		D339CBF418B69E3600A18C4E /* FMTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,7 @@
 		D339CBBB18B6850000A18C4E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D339CBF218B69E1700A18C4E /* Model */,
 				D339CBBC18B6850000A18C4E /* Overdue Task List-Info.plist */,
 				D339CBBD18B6850000A18C4E /* InfoPlist.strings */,
 				D339CBC018B6850000A18C4E /* main.m */,
@@ -165,6 +169,15 @@
 				D339CBDC18B6850100A18C4E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D339CBF218B69E1700A18C4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D339CBF318B69E3600A18C4E /* FMTask.h */,
+				D339CBF418B69E3600A18C4E /* FMTask.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +283,7 @@
 				D339CBF118B68D7100A18C4E /* FMEditTaskViewController.m in Sources */,
 				D339CBEB18B68CEB00A18C4E /* FMAddTaskViewController.m in Sources */,
 				D339CBCB18B6850000A18C4E /* FMViewController.m in Sources */,
+				D339CBF518B69E3600A18C4E /* FMTask.m in Sources */,
 				D339CBEE18B68D5200A18C4E /* FMDetailTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
