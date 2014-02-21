@@ -92,8 +92,6 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.tableView reloadData];
-    NSLog(@"Reload Should have fired");
-    
 }
 
 #pragma mark - Helper Methods
