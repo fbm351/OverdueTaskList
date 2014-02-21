@@ -67,12 +67,28 @@
 - (void)didAddTask:(FMTask *)task
 {
     [self.tasks addObject:task];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"task list is %@", self.tasks);
-    for (FMTask *task in self.tasks)
-    {
-        NSLog(@"%@", task.title);
+    
+    NSMutableArray *taskAsPropertyLists = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_LIST] mutableCopy];
+    if (!taskAsPropertyLists) {
+        taskAsPropertyLists = [[NSMutableArray alloc] init];
     }
+    [taskAsPropertyLists addObject:[self taskAsPropertyList:task]];
+    [[NSUserDefaults standardUserDefaults] setObject:taskAsPropertyLists forKey:TASK_LIST];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.tableView reloadData];
+    
+}
+
+#pragma mark - Helper Methods
+
+- (NSDictionary *)taskAsPropertyList:(FMTask *)task
+{
+    NSDictionary *dictionary = @{TASK_TITLE : task.title, TASK_DETAIL : task.detail, TASK_DATE : task.date, TASK_COMPLETE : @(task.completed)};
+    return dictionary;
 }
 
 @end
