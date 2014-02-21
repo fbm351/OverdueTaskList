@@ -17,18 +17,30 @@
 
 #pragma mark - Lazy Instantiation
 
-- (NSMutableArray *)tasks
+- (NSMutableArray *)taskObjects
 {
-    if (!_tasks) {
-        _tasks = [[NSMutableArray alloc] init];
+    if (!_taskObjects) {
+        _taskObjects = [[NSMutableArray alloc] init];
     }
-    return _tasks;
+    return _taskObjects;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    NSArray *myTasksAsPropertyLists = [[NSUserDefaults standardUserDefaults] arrayForKey:TASK_LIST];
+    for (NSDictionary *dictionary in myTasksAsPropertyLists)
+    {
+        FMTask *taskObject = [self taskObjectForDictionary:dictionary];
+        [self.taskObjects addObject:taskObject];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,29 +78,67 @@
 
 - (void)didAddTask:(FMTask *)task
 {
-    [self.tasks addObject:task];
+    [self.taskObjects addObject:task];
     
     NSMutableArray *taskAsPropertyLists = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_LIST] mutableCopy];
     if (!taskAsPropertyLists) {
         taskAsPropertyLists = [[NSMutableArray alloc] init];
     }
-    [taskAsPropertyLists addObject:[self taskAsPropertyList:task]];
+    [taskAsPropertyLists addObject:[self taskObjectAsPropertyList:task]];
     [[NSUserDefaults standardUserDefaults] setObject:taskAsPropertyLists forKey:TASK_LIST];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     
-    [self dismissViewControllerAnimated:YES completion:nil];
     
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self.tableView reloadData];
+    NSLog(@"Reload Should have fired");
     
 }
 
 #pragma mark - Helper Methods
 
-- (NSDictionary *)taskAsPropertyList:(FMTask *)task
+- (NSDictionary *)taskObjectAsPropertyList:(FMTask *)task
 {
     NSDictionary *dictionary = @{TASK_TITLE : task.title, TASK_DETAIL : task.detail, TASK_DATE : task.date, TASK_COMPLETE : @(task.completed)};
     return dictionary;
 }
+
+- (FMTask *)taskObjectForDictionary:(NSDictionary *)dictionary
+{
+    FMTask *taskObject = [[FMTask alloc] initWithData:dictionary];
+    return taskObject;
+}
+
+#pragma mark - UITableView Delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.taskObjects count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"TaskCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    FMTask *task = [self.taskObjects objectAtIndex:indexPath.row];
+    cell.textLabel.text = task.title;
+    
+    //Convert date to string here
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateToString = [formatter stringFromDate:task.date];
+    
+    cell.detailTextLabel.text = dateToString;
+    return cell;
+}
+
+#pragma mark - UITableView Datasource
+
 
 @end
