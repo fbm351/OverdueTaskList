@@ -108,6 +108,17 @@
     return taskObject;
 }
 
+- (BOOL)isDateGreaterThanDate:(NSDate *)date and:(NSDate *)toDate
+{
+    if ([date timeIntervalSince1970] > [toDate timeIntervalSince1970]) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
 #pragma mark - UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -133,6 +144,25 @@
     NSString *dateToString = [formatter stringFromDate:task.date];
     
     cell.detailTextLabel.text = dateToString;
+    
+    //Checks to see if the date on the task is older than today and sets it to red it the completed flag is NO
+    if ([self isDateGreaterThanDate:[NSDate date] and:task.date] && !task.completed)
+    {
+        cell.backgroundColor = [UIColor redColor];
+    }
+    
+    //Checks to see if the task is completed and
+    else if (task.completed)
+    {
+        cell.backgroundColor = [UIColor greenColor];
+    }
+    
+    //If the task is still open and not completed changes color to yellow
+    else
+    {
+        cell.backgroundColor = [UIColor yellowColor];
+    }
+    
     return cell;
 }
 
