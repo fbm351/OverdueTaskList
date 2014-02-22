@@ -119,7 +119,32 @@
     }
 }
 
-#pragma mark - UITableView Delegate
+//This method grabs the list of tasks, removes the task at a specfic index, updates the task, restores the task to NSUserDefaults at the same index and then reloads the tableView
+- (void)updateCompletionStatusOfTask:(FMTask *)task forIndex:(NSIndexPath *)indexPath
+{
+    NSMutableArray *taskObjectAsPropertyLists = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_LIST] mutableCopy];
+    if (!taskObjectAsPropertyLists) {
+        taskObjectAsPropertyLists = [[NSMutableArray alloc] init];
+    }
+    [taskObjectAsPropertyLists removeObjectAtIndex:indexPath.row];
+    
+    if (task.completed) {
+        task.completed = NO;
+    }
+    else
+    {
+        task.completed = YES;
+    }
+    [taskObjectAsPropertyLists insertObject:[self taskObjectAsPropertyList:task] atIndex:indexPath.row];
+    [[NSUserDefaults standardUserDefaults] setObject:taskObjectAsPropertyLists forKey:TASK_LIST];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.tableView reloadData];
+    
+}
+
+
+
+#pragma mark - UITableView Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -166,7 +191,38 @@
     return cell;
 }
 
-#pragma mark - UITableView Datasource
+#pragma mark - UITableView Delegate
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FMTask *selectedTask = [self.taskObjects objectAtIndex:indexPath.row];
+    [self updateCompletionStatusOfTask:selectedTask forIndex:indexPath];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self.taskObjects removeObjectAtIndex:indexPath.row];
+        NSMutableArray *newTaskObject = [[NSMutableArray alloc] init];
+        for (FMTask *taskObject in self.taskObjects)
+        {
+            [newTaskObject addObject:[self taskObjectAsPropertyList:taskObject]];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:newTaskObject forKey:TASK_LIST];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        
+    }
+}
 
 @end
