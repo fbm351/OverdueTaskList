@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMTask.h"
 
 @interface FMEditTaskViewController : UIViewController
+
+@property (strong, nonatomic) FMTask *taskObject;
 
 //IBOutlets
 @property (strong, nonatomic) IBOutlet UITextField *textFieldTaskName;

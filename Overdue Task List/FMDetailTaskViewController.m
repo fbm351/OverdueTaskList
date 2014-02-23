@@ -7,6 +7,8 @@
 //
 
 #import "FMDetailTaskViewController.h"
+#import "FMEditTaskViewController.h"
+#define TO_EDIT_TASK @"toEditTaskViewContoller"
 
 @interface FMDetailViewController ()
 
@@ -34,7 +36,6 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateToString = [formatter stringFromDate:self.taskObject.date];
     self.labelTaskDate.text = dateToString;
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +44,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:TO_EDIT_TASK sender:sender];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:TO_EDIT_TASK]) {
+        FMEditTaskViewController *editTaskVC = segue.destinationViewController;
+        editTaskVC.taskObject = self.taskObject;
+    }
+    
 }
 @end
