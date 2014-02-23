@@ -11,6 +11,7 @@
 
 @interface FMEditTaskViewController : UIViewController
 
+//Properties
 @property (strong, nonatomic) FMTask *taskObject;
 
 //IBOutlets
