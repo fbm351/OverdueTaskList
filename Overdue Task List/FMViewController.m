@@ -7,7 +7,9 @@
 //
 
 #import "FMViewController.h"
+#import "FMDetailTaskViewController.h"
 #define TO_ADD_VIEW @"toAddedTaskViewController"
+#define TO_DETAIL_VIEW @"toDetailTaskViewController"
 
 @interface FMViewController ()
 
@@ -65,6 +67,12 @@
     {
         FMAddTaskViewController *addTaskVC = segue.destinationViewController;
         addTaskVC.delegate = self;
+    }
+    
+    if ([segue.identifier isEqualToString:TO_DETAIL_VIEW]) {
+        FMDetailViewController *taskDetailVC = segue.destinationViewController;
+        NSIndexPath *indexPath = sender;
+        taskDetailVC.taskObject = self.taskObjects[indexPath.row];
     }
 }
 
@@ -223,6 +231,11 @@
     {
         
     }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:TO_DETAIL_VIEW sender:indexPath];
 }
 
 @end

@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMTask.h"
 
 @interface FMDetailViewController : UIViewController
+
+//Properties
+@property (strong, nonatomic) FMTask *taskObject;
 
 //IBOutlets
 @property (strong, nonatomic) IBOutlet UILabel *labelTaskName;
