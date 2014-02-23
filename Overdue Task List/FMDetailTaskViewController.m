@@ -33,7 +33,7 @@
     self.labelTaskDescription.text = self.taskObject.detail;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
+    [formatter setDateFormat:@"MMMM d, yyyy"];
     NSString *dateToString = [formatter stringFromDate:self.taskObject.date];
     self.labelTaskDate.text = dateToString;
 }

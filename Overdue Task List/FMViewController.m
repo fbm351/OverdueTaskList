@@ -173,7 +173,7 @@
     
     //Convert date to string here
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
+    [formatter setDateFormat:@"MMMM d, yyyy"];
     NSString *dateToString = [formatter stringFromDate:task.date];
     
     cell.detailTextLabel.text = dateToString;
