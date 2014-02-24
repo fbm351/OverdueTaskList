@@ -32,7 +32,6 @@
         [self.taskObjects addObject:taskObject];
     }
     
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,7 +42,14 @@
 
 - (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender
 {
-    
+    if (self.tableView.editing == NO)
+    {
+        self.tableView.editing = YES;
+    }
+    else
+    {
+        self.tableView.editing = NO;
+    }
 }
 
 - (IBAction)addButtonPressed:(UIBarButtonItem *)sender
@@ -248,5 +254,19 @@
 {
     [self performSegueWithIdentifier:TO_DETAIL_VIEW sender:indexPath];
 }
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    FMTask *selectedTask = self.taskObjects[sourceIndexPath.row];
+    [self.taskObjects removeObjectAtIndex:sourceIndexPath.row];
+    [self.taskObjects insertObject:selectedTask atIndex:destinationIndexPath.row];
+    [self saveTasks];
+}
+
 
 @end
