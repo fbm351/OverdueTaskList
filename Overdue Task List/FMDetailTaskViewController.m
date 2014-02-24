@@ -65,7 +65,7 @@
     self.taskObject = task;
     [self setupViewWithTask:self.taskObject];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.delegate didUpdateTask:task];
+    [self.delegate didUpdateTask:task atIndexPath:self.taskIndexPath];
     
 }
 

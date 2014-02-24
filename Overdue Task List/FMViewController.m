@@ -68,6 +68,7 @@
         FMDetailViewController *taskDetailVC = segue.destinationViewController;
         NSIndexPath *indexPath = sender;
         taskDetailVC.taskObject = self.taskObjects[indexPath.row];
+        taskDetailVC.taskIndexPath = indexPath;
         taskDetailVC.delegate = self;
     }
 }
@@ -270,8 +271,12 @@
 
 #pragma mark - FMDetailTaskView Delegate
 
-- (void)didUpdateTask:(FMTask *)task
+- (void)didUpdateTask:(FMTask *)task atIndexPath:(NSIndexPath *)indexPath
 {
+    [self.taskObjects removeObjectAtIndex:indexPath.row];
+    [self.taskObjects insertObject:task atIndex:indexPath.row];
+    [self saveTasks];
+    [self.tableView reloadData];
     
 }
 

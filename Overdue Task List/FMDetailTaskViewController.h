@@ -14,7 +14,7 @@
 
 @required
 
--(void)didUpdateTask:(FMTask *)task;
+-(void)didUpdateTask:(FMTask *)task atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -23,6 +23,7 @@
 //Properties
 @property (weak, nonatomic) id <FMDetailViewControllerDelegate> delegate;
 @property (strong, nonatomic) FMTask *taskObject;
+@property (strong, nonatomic) NSIndexPath *taskIndexPath;
 
 //IBOutlets
 @property (strong, nonatomic) IBOutlet UILabel *labelTaskName;
