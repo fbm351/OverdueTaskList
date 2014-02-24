@@ -150,6 +150,16 @@
     
 }
 
+- (void)saveTasks
+{
+    NSMutableArray *tasksAsPropertyLists = [[NSMutableArray alloc] init];
+    for (int x = 0; x < [self.taskObjects count]; x ++) {
+        [tasksAsPropertyLists addObject:[self taskObjectAsPropertyList:self.taskObjects[x]]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:tasksAsPropertyLists forKey:TASK_LIST];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 
 #pragma mark - UITableView Datasource
