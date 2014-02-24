@@ -17,16 +17,6 @@
 
 @implementation FMViewController
 
-#pragma mark - Lazy Instantiation
-
-- (NSMutableArray *)taskObjects
-{
-    if (!_taskObjects) {
-        _taskObjects = [[NSMutableArray alloc] init];
-    }
-    return _taskObjects;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -74,6 +64,16 @@
         NSIndexPath *indexPath = sender;
         taskDetailVC.taskObject = self.taskObjects[indexPath.row];
     }
+}
+
+#pragma mark - Lazy Instantiation
+
+- (NSMutableArray *)taskObjects
+{
+    if (!_taskObjects) {
+        _taskObjects = [[NSMutableArray alloc] init];
+    }
+    return _taskObjects;
 }
 
 #pragma mark - FMAddTaskViewController delegates
@@ -128,6 +128,7 @@
 }
 
 //This method grabs the list of tasks, removes the task at a specfic index, updates the task, restores the task to NSUserDefaults at the same index and then reloads the tableView
+
 - (void)updateCompletionStatusOfTask:(FMTask *)task forIndex:(NSIndexPath *)indexPath
 {
     NSMutableArray *taskObjectAsPropertyLists = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_LIST] mutableCopy];
@@ -150,6 +151,8 @@
     
 }
 
+//This methods takes the current tasks in taskObjects and creates a mutable array to and stores them in it and then changes them to a property list to pass back to NSUserDefaults.
+
 - (void)saveTasks
 {
     NSMutableArray *tasksAsPropertyLists = [[NSMutableArray alloc] init];
@@ -159,8 +162,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:tasksAsPropertyLists forKey:TASK_LIST];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
-
 
 #pragma mark - UITableView Datasource
 
