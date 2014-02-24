@@ -29,13 +29,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.labelTaskName.text = self.taskObject.title;
-    self.labelTaskDescription.text = self.taskObject.detail;
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM d, yyyy"];
-    NSString *dateToString = [formatter stringFromDate:self.taskObject.date];
-    self.labelTaskDate.text = dateToString;
+    [self setupViewWithTask:self.taskObject];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +48,38 @@
     if ([segue.identifier isEqualToString:TO_EDIT_TASK]) {
         FMEditTaskViewController *editTaskVC = segue.destinationViewController;
         editTaskVC.taskObject = self.taskObject;
+        editTaskVC.delegate = self;
     }
     
 }
+
+#pragma mark - FMEditTaskViewController Delegates
+
+- (void)didPressCancel
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)didEditTask:(FMTask *)task
+{
+    self.taskObject = task;
+    [self setupViewWithTask:self.taskObject];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate didUpdateTask:task];
+    
+}
+
+#pragma mark - Helper Methods
+
+- (void)setupViewWithTask:(FMTask *)task
+{
+    self.labelTaskName.text = task.title;
+    self.labelTaskDescription.text = task.detail;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMMM d, yyyy"];
+    NSString *dateToString = [formatter stringFromDate:task.date];
+    self.labelTaskDate.text = dateToString;
+}
+
 @end

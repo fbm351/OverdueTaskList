@@ -31,6 +31,7 @@
     self.textFieldTaskName.text = self.taskObject.title;
     self.textView.text = self.taskObject.detail;
     self.datePicker.date = self.taskObject.date;
+    self.textView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,9 +40,35 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)saveButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)saveButtonPressed:(UIBarButtonItem *)sender
+{
+    self.taskObject.title = self.textFieldTaskName.text;
+    self.taskObject.detail = self.textView.text;
+    self.taskObject.date = self.datePicker.date;
+    
+    [self.delegate didEditTask:self.taskObject];
 }
 
-- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
+{
+    [self.delegate didPressCancel];
 }
+
+#pragma mark - UITextView Delegate
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [self.textView resignFirstResponder];
+        return NO;
+    }
+    
+    else
+    {
+        return YES;
+    }
+}
+
+
 @end

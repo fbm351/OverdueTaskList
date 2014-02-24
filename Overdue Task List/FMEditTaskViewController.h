@@ -9,9 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "FMTask.h"
 
-@interface FMEditTaskViewController : UIViewController
+
+@protocol FMEditTaskViewControllerDelegate <NSObject>
+
+@required
+
+- (void)didPressCancel;
+- (void)didEditTask:(FMTask *)task;
+
+@end
+
+@interface FMEditTaskViewController : UIViewController <UITextViewDelegate>
 
 //Properties
+@property (weak, nonatomic) id <FMEditTaskViewControllerDelegate> delegate;
 @property (strong, nonatomic) FMTask *taskObject;
 
 //IBOutlets

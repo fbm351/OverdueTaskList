@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FMAddTaskViewController.h"
+#import "FMDetailTaskViewController.h"
 
-@interface FMViewController : UIViewController <FMAddTaskViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface FMViewController : UIViewController <FMAddTaskViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, FMDetailViewControllerDelegate>
 
 //Objects
 @property (strong, nonatomic) NSMutableArray *taskObjects;

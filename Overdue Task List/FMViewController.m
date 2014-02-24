@@ -7,7 +7,6 @@
 //
 
 #import "FMViewController.h"
-#import "FMDetailTaskViewController.h"
 #define TO_ADD_VIEW @"toAddedTaskViewController"
 #define TO_DETAIL_VIEW @"toDetailTaskViewController"
 
@@ -69,6 +68,7 @@
         FMDetailViewController *taskDetailVC = segue.destinationViewController;
         NSIndexPath *indexPath = sender;
         taskDetailVC.taskObject = self.taskObjects[indexPath.row];
+        taskDetailVC.delegate = self;
     }
 }
 
@@ -266,6 +266,13 @@
     [self.taskObjects removeObjectAtIndex:sourceIndexPath.row];
     [self.taskObjects insertObject:selectedTask atIndex:destinationIndexPath.row];
     [self saveTasks];
+}
+
+#pragma mark - FMDetailTaskView Delegate
+
+- (void)didUpdateTask:(FMTask *)task
+{
+    
 }
 
 
