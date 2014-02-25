@@ -30,7 +30,6 @@
         FMTask *taskObject = [self taskObjectForDictionary:dictionary];
         [self.taskObjects addObject:taskObject];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +52,7 @@
 
 - (IBAction)addButtonPressed:(UIBarButtonItem *)sender
 {
-    [self performSegueWithIdentifier:TO_ADD_VIEW sender:sender];
+    [self performSegueWithIdentifier:TO_ADD_VIEW sender:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -64,7 +63,8 @@
         addTaskVC.delegate = self;
     }
     
-    if ([segue.identifier isEqualToString:TO_DETAIL_VIEW]) {
+    if ([segue.identifier isEqualToString:TO_DETAIL_VIEW])
+    {
         FMDetailViewController *taskDetailVC = segue.destinationViewController;
         NSIndexPath *indexPath = sender;
         taskDetailVC.taskObject = self.taskObjects[indexPath.row];
@@ -77,7 +77,8 @@
 
 - (NSMutableArray *)taskObjects
 {
-    if (!_taskObjects) {
+    if (!_taskObjects)
+    {
         _taskObjects = [[NSMutableArray alloc] init];
     }
     return _taskObjects;
@@ -88,7 +89,6 @@
 - (void)didCancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"Did Cancel");
 }
 
 - (void)didAddTask:(FMTask *)task
@@ -103,26 +103,27 @@
     [[NSUserDefaults standardUserDefaults] setObject:taskAsPropertyLists forKey:TASK_LIST];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    
-    
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.tableView reloadData];
 }
 
 #pragma mark - Helper Methods
 
+//Takes a task object and converts it to a Dictionary of property lists
 - (NSDictionary *)taskObjectAsPropertyList:(FMTask *)task
 {
     NSDictionary *dictionary = @{TASK_TITLE : task.title, TASK_DETAIL : task.detail, TASK_DATE : task.date, TASK_COMPLETE : @(task.completed)};
     return dictionary;
 }
 
+//Takes a property list dictionary and converts it to a Task object.
 - (FMTask *)taskObjectForDictionary:(NSDictionary *)dictionary
 {
     FMTask *taskObject = [[FMTask alloc] initWithData:dictionary];
     return taskObject;
 }
 
+//Checks to see it a date is greater than another date
 - (BOOL)isDateGreaterThanDate:(NSDate *)date and:(NSDate *)toDate
 {
     if ([date timeIntervalSince1970] > [toDate timeIntervalSince1970]) {
@@ -135,7 +136,6 @@
 }
 
 //This method grabs the list of tasks, removes the task at a specfic index, updates the task, restores the task to NSUserDefaults at the same index and then reloads the tableView
-
 - (void)updateCompletionStatusOfTask:(FMTask *)task forIndex:(NSIndexPath *)indexPath
 {
     NSMutableArray *taskObjectAsPropertyLists = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_LIST] mutableCopy];
@@ -159,7 +159,6 @@
 }
 
 //This methods takes the current tasks in taskObjects and creates a mutable array to and stores them in it and then changes them to a property list to pass back to NSUserDefaults.
-
 - (void)saveTasks
 {
     NSMutableArray *tasksAsPropertyLists = [[NSMutableArray alloc] init];
