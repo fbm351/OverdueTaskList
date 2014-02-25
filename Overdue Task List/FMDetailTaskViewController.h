@@ -14,7 +14,7 @@
 
 @required
 
--(void)didUpdateTask:(FMTask *)task atIndexPath:(NSIndexPath *)indexPath;
+-(void)didUpdateTask;
 
 @end
 

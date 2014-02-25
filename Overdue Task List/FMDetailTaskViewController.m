@@ -7,7 +7,6 @@
 //
 
 #import "FMDetailTaskViewController.h"
-#import "FMEditTaskViewController.h"
 #define TO_EDIT_TASK @"toEditTaskViewContoller"
 
 @interface FMDetailViewController ()
@@ -50,7 +49,6 @@
         editTaskVC.taskObject = self.taskObject;
         editTaskVC.delegate = self;
     }
-    
 }
 
 #pragma mark - FMEditTaskViewController Delegates
@@ -60,12 +58,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)didEditTask:(FMTask *)task
+-(void)didEditTask
 {
-    self.taskObject = task;
     [self setupViewWithTask:self.taskObject];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.delegate didUpdateTask:task atIndexPath:self.taskIndexPath];
+    [self.delegate didUpdateTask];
     
 }
 

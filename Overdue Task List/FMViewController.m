@@ -42,11 +42,11 @@
 {
     if (self.tableView.editing == NO)
     {
-        self.tableView.editing = YES;
+        [self.tableView setEditing:YES animated:YES];
     }
     else
     {
-        self.tableView.editing = NO;
+        [self.tableView setEditing:NO animated:YES];
     }
 }
 
@@ -234,19 +234,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         [self.taskObjects removeObjectAtIndex:indexPath.row];
-        NSMutableArray *newTaskObject = [[NSMutableArray alloc] init];
-        for (FMTask *taskObject in self.taskObjects)
-        {
-            [newTaskObject addObject:[self taskObjectAsPropertyList:taskObject]];
-        }
-        [[NSUserDefaults standardUserDefaults] setObject:newTaskObject forKey:TASK_LIST];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
+        [self saveTasks];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert)
-    {
-        
     }
 }
 
@@ -270,10 +259,8 @@
 
 #pragma mark - FMDetailTaskView Delegate
 
-- (void)didUpdateTask:(FMTask *)task atIndexPath:(NSIndexPath *)indexPath
+- (void)didUpdateTask
 {
-    [self.taskObjects removeObjectAtIndex:indexPath.row];
-    [self.taskObjects insertObject:task atIndex:indexPath.row];
     [self saveTasks];
     [self.tableView reloadData];
     

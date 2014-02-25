@@ -15,7 +15,7 @@
 @required
 
 - (void)didPressCancel;
-- (void)didEditTask:(FMTask *)task;
+- (void)didEditTask;
 
 @end
 

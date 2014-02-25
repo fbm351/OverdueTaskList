@@ -46,7 +46,7 @@
     self.taskObject.detail = self.textView.text;
     self.taskObject.date = self.datePicker.date;
     
-    [self.delegate didEditTask:self.taskObject];
+    [self.delegate didEditTask];
 }
 
 - (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
